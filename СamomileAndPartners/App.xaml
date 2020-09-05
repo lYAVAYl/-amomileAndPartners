@@ -1,0 +1,54 @@
+﻿<Application x:Class="СamomileAndPartners.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:СamomileAndPartners"
+             xmlns:viewmodels="clr-namespace:СamomileAndPartners.ViewModels"
+             xmlns:view="clr-namespace:СamomileAndPartners.Views">
+    <Application.Resources>
+        <Style x:Key="HeaderStyle" TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="DefaultTextStyle" TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Right"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+        <Style x:Key="InputStyle" TargetType="TextBox">
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style x:Key="ErrorStyle" TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="Red"/>
+        </Style>
+
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+
+        <!--Связка ViewModel и View-->
+        <DataTemplate DataType="{x:Type viewmodels:CompaniesListViewModel}">
+            <view:CompaniesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:AddEditCompanyViewModel}">
+            <view:AddEditCompany/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:CompanyUsersViewModel}">
+            <view:CompanyUsersView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:AddEditUserViewModel}">
+            <view:AddEditUserView/>
+        </DataTemplate>
+    </Application.Resources>
+</Application>

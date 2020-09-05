@@ -1,0 +1,32 @@
+﻿<Window x:Class="СamomileAndPartners.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:context ="clr-namespace:СamomileAndPartners.ViewModels"
+        xmlns:views ="clr-namespace:СamomileAndPartners.Views"
+        xmlns:local="clr-namespace:СamomileAndPartners"
+        mc:Ignorable="d"
+        Title="Сamomile And Partners" Height="450" MinWidth="900">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel>
+            <StackPanel>
+                <Button Content="Список компаний"
+                        Command="{Binding LoadCompaniesListPage}"
+                        FontSize="16"/>
+
+                <Button Content="Список пользователей"
+                        Command="{Binding LoadUsersListPage}"
+                        FontSize="16"/>
+            </StackPanel>
+        </DockPanel>
+
+        <ContentControl Grid.Column="1" 
+                        Content="{Binding CurrentPageViewModel}"/>
+    </Grid>
+</Window>

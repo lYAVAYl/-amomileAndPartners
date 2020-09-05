@@ -1,0 +1,114 @@
+﻿<UserControl x:Class="СamomileAndPartners.Views.AddEditCompany"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:СamomileAndPartners.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DockPanel Margin="10">
+            <TextBlock Text="{Binding Header}"
+                       DockPanel.Dock="Top"
+                       Style="{StaticResource HeaderStyle}"
+                       Margin="0,0,0,10"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0"
+                           Text="Название компании"
+                           Style="{StaticResource DefaultTextStyle}"
+                           VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Grid.Row="0"
+                           Text="Статус договора"
+                           Style="{StaticResource DefaultTextStyle}"
+                           VerticalAlignment="Top" HorizontalAlignment="Center"/>
+
+                <TextBlock Grid.Column="0" Grid.Row="1" 
+                           Text="{Binding ErrorCollection[Name]}" 
+                           Style="{StaticResource ErrorStyle}"/>
+
+                <TextBlock Grid.Column="1" Grid.Row="1"  
+                           Text="{Binding ErrorCollection[SelectedStatus]}" 
+                           Style="{StaticResource ErrorStyle}"/>
+
+
+
+                <TextBox Grid.Column="0" Grid.Row="2"  
+                         Text="{Binding Name, 
+                                ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource InputStyle}"
+                         Margin="10"/>
+
+                <ComboBox Grid.Column="1" Grid.Row="2"  
+                          ItemsSource="{Binding StatusList}"
+                          SelectedItem="{Binding SelectedStatus, 
+                                    ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                          Style="{StaticResource ComboBoxStyle}"
+                          Margin="10"
+                          VerticalAlignment="Top"/>
+
+
+                <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"
+                        Command="{Binding Save}"
+                        Content="Сохранить"
+                        FontSize="16"
+                        VerticalAlignment="Top" HorizontalAlignment="Center"
+                        Padding="10" Margin="10"/>
+
+            </Grid>
+        </DockPanel>
+        
+
+
+
+
+        <!--<TextBlock Grid.Column="0" Grid.Row="1"
+                   Text="Название"
+                   Style="{StaticResource DefaultTextStyle}"
+                   Margin="5,0"
+                   VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <TextBlock Grid.Column="0" Grid.Row="2"
+                   Text="Статус договора"
+                   Style="{StaticResource DefaultTextStyle}"
+                   VerticalAlignment="Center"
+                   />
+
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <TextBox Text="{Binding Name, 
+                            ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource InputStyle}"/>
+
+            <TextBlock Text="{Binding ErrorCollection[Name]}" 
+                       Style="{StaticResource ErrorStyle}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="2">
+            <TextBlock Text="{Binding ErrorCollection[SelectedStatus]}" 
+                       Style="{StaticResource ErrorStyle}"/>
+
+            <ComboBox ItemsSource="{Binding StatusList}"
+                      SelectedItem="{Binding SelectedStatus, 
+                                    ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                      Style="{StaticResource ComboBoxStyle}"/>
+        </StackPanel>
+        
+        
+        
+
+        <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"
+                Command="{Binding Save}"
+                Content="Сохранить"
+                Style="{StaticResource ButtonStyle}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                Padding="10"/>-->
+    </Grid>
+</UserControl>

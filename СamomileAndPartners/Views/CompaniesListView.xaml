@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="СamomileAndPartners.Views.CompaniesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:СamomileAndPartners.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel Margin="20,0">
+        <WrapPanel DockPanel.Dock="Top"
+                   HorizontalAlignment="Center">
+            <TextBlock Text="Список компаний"
+                       Style="{StaticResource HeaderStyle}"/>
+            <Button Content="➕"
+                    Command="{Binding LoadAddCompanyPage}" 
+                    FontSize="16"
+                    VerticalAlignment="Center" HorizontalAlignment="Center"
+                    ToolTip="Добавить компанию"
+                    Foreground="Green" 
+                    BorderBrush="{x:Null}"
+                    Background="{x:Null}"
+                    Padding="3" Margin="5,0"/>
+        </WrapPanel>
+        
+        <Grid>
+            <ScrollViewer>
+                <ListView Name="Content"
+                          ItemsSource="{Binding Companies}"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          ScrollViewer.CanContentScroll="True">
+                    <ListView.InputBindings>
+                        <KeyBinding Key="Return"
+                                        Command="{Binding ItemsSource.OpenItemCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                        CommandParameter="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=ListView}}"/>
+                    </ListView.InputBindings>
+                    <ListView.Resources>
+                        <Style TargetType="Button" x:Key="TableOfContentsButtonStyle">
+                            <Setter Property="Width" Value="40"/>
+                            <Setter Property="Height" Value="40"/>
+                            <Setter Property="FontSize" Value="18"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="Margin" Value="5,0"/>
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.Resources>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <DockPanel>
+                                    <Grid Background="Transparent">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80"/>
+                                            <ColumnDefinition Width="300"/>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.InputBindings>
+                                            <MouseBinding Gesture="LeftDoubleClick"
+                                                                Command="{Binding ItemsSource.OpenItemCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                                                CommandParameter="{Binding}"/>
+                                        </Grid.InputBindings>
+                                        <TextBlock Text="{Binding Id}"
+                                                        MinWidth="40" MinHeight="40"
+                                                        TextWrapping="Wrap"
+                                                        Foreground="Black" FontSize="30"
+                                                        TextAlignment="Center"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding }"  
+                                                        TextWrapping="Wrap" 
+                                                        VerticalAlignment="Center"
+                                                        Foreground="Black" FontSize="20"
+                                                        Padding="10"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding ContractStatus}"  
+                                                   TextWrapping="Wrap" 
+                                                   TextAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="Black" FontSize="18"
+                                                   Padding="5"/>
+                                        <Button Grid.Column="3"
+                                                Style="{StaticResource TableOfContentsButtonStyle}"
+                                                Content="🖊"
+                                                ToolTip="Редактировать"
+                                                Command="{Binding ItemsSource.EditItemCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                                CommandParameter="{Binding}"
+                                                Foreground="Blue"
+                                                BorderBrush="{x:Null}"
+                                                Background="{x:Null}"/>
+                                        <Button Grid.Column="4" 
+                                                Style="{StaticResource TableOfContentsButtonStyle}"
+                                                Content="❌" 
+                                                ToolTip="Удалить"
+                                                Command="{Binding ItemsSource.DeleteItemCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                                CommandParameter="{Binding}"
+                                                Foreground="Red"
+                                                BorderBrush="{x:Null}"
+                                                Background="{x:Null}"/>
+                                    </Grid>
+                                </DockPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
+        </Grid>
+        
+
+    </DockPanel>
+</UserControl>
